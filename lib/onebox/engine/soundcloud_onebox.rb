@@ -23,10 +23,8 @@ module Onebox
           @oembed_data ||= begin
             oembed_url = "https://soundcloud.com/oembed.json?url=#{url}"
             oembed_url << "&maxheight=166" unless url["/sets/"]
-            response = Onebox::Helpers.fetch_response(oembed_url) rescue "{}"
+            response = Onebox::Helpers.fetch_response(oembed_url)
             Onebox::Helpers.symbolize_keys(::MultiJson.load(response))
-          rescue
-            {}
           end
         end
 
